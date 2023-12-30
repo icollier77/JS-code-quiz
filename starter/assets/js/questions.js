@@ -1,7 +1,18 @@
 // all const for html elements
+const timeEl = document.querySelector('#time');
+const startScreenEl = document.querySelector('#start-screen');
+const startBtn = document.querySelector('#start');
+const questionsEl = document.querySelector('#questions');
+const questionTitleEl = document.querySelector('#question-title');
+const choicesEl = document.querySelector('#choices');
+const endScreenEl = document.querySelector('#end-screen');
+const finalScoreEl = document.querySelector('#final-score');
+const initialsEl = document.querySelector('#initials');
+const submitBtn = document.querySelector('#submit');
+const feedbackEl = document.querySelector('#feedback');
+
 
 // a object with questions and their answers
-
 const questions = [
     {
         question: "When is St. David's day?",
