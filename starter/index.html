@@ -10,11 +10,13 @@
   </head>
 
   <body>
+    <!-- link to the Highscores.html -->
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
-
+    <!-- Display timer counting down from 75 -->
     <div class="timer">Time: <span id="time">0</span></div>
 
     <div class="wrapper">
+      <!-- Starting screen. Hide after 'Start' button is clicked -->
       <div id="start-screen" class="start">
         <h1>Coding Quiz Challenge</h1>
         <p>
@@ -24,12 +26,14 @@
         </p>
         <button id="start">Start Quiz</button>
       </div>
-
+      
+      <!-- Div with Questions. Display after 'Start' button is clicked -->
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
       </div>
 
+      <!-- Display after all 5 questions are answered OR the timer is finished -->
       <div id="end-screen" class="hide">
         <h2>All done!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
@@ -38,7 +42,7 @@
           <button id="submit">Submit</button>
         </p>
       </div>
-
+      <!-- After a question is answered, shows if it was correct or not -->
       <div id="feedback" class="feedback hide"></div>
     </div>
 
