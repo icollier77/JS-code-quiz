@@ -103,9 +103,3 @@ function askQuestions() {
         });
     };
 };
-
-
-
-// after all Qs are answered OR timer = 0, show 'End-screen' div to display final score and enter Initials, save Initials and score to local storage as JSON
-
-// when user clicks 'Submit' function in the 'end-screen', open the highscores.html
