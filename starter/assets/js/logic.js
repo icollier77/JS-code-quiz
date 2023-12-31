@@ -11,15 +11,14 @@ const initialsEl = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
-
-// set score to 0
 let score = 0;
+let currentQuestionIndex = 0;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
-    
+    askQuestions();
 })
 
 // timer function
@@ -45,6 +44,20 @@ function showQuestions(event) {
 }
     
 // cycle through questions
+function askQuestions() {
+    let currentQuestion = questions[currentQuestionIndex];
+
+}
+
+function askQuestions() {
+    for (let i = 0; i < questions.length; i++) {
+        questionTitleEl.textContent = questions[i].question;
+        console.log(questions[i].question);
+        // for (let j = 0; j < answers.length; j++) {
+        }
+    }
+
+
 
 
 // when timer = 0, switch to the 

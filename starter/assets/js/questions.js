@@ -18,7 +18,7 @@ const questions = [
             {text: "Sean Connery", correct: false},
             {text: "Benedict Cumberbatch", correct: false},
             {text: "Tilda Swinton", correct: false},
-            {text: "Anthony Hopkins", correct: false}
+            {text: "Anthony Hopkins", correct: true}
         ]
     },
     {
