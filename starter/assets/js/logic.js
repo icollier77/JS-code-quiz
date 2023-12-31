@@ -12,15 +12,14 @@ const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
 let score = 0;
-let timeLeft = 75;
 let currentQuestionIndex = 0;
+let timeLeft = 75;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
     askQuestions();
-    // enterInitials();
 })
 
 // timer function
@@ -32,14 +31,16 @@ function countdown() {
     } else {
         timeEl.textContent = 0;
         clearInterval(timeInterval);
-    }
+    };
     }, 1000);
 }
+
 // function to hide start div, show questions div
 function showQuestions() {
     startScreenDiv.classList.add("hide");
     questionsDiv.classList.toggle("hide");
 }
+
 // function to cycle through questions
 function askQuestions() {
     displayQuestion();
@@ -83,23 +84,26 @@ function askQuestions() {
                 }, 1000);
                 currentQuestionIndex++; // prepare to move to the next question
                 // display the next question
-                displayQuestion();
-                if (timeLeft <= 0 || currentQuestionIndex === questions.length - 1) {
-                    questionsDiv.classList.toggle("hide");
-                    endScreenDiv.classList.toggle("hide");
-                    finalScoreEl.innerHTML = score;
-                    // add event handler on the Submit button
-                    submitBtn.addEventListener('click', function(e){
-                        e.stopPropagation();
-                        const playerInitials = initialsEl.value;
-                        const player = {initials: playerInitials, scoreValue: score};
-                        const userInfo = JSON.stringify(player);
-                        localStorage.setItem("user", userInfo);
-                        window.location.href = "highscores.html";
-                    })
-                    
-                };
+                displayQuestion();                
             });
         });
+
+        console.log(`Time left is ${timeLeft}`);
+        
+        // if out of time or last question, show End Screen div
+        if (Math.ceil(timeLeft) <= 0 || currentQuestionIndex === questions.length - 1) {
+            questionsDiv.classList.toggle("hide");
+            endScreenDiv.classList.toggle("hide");
+            finalScoreEl.textContent = score;
+            // add event handler on the Submit button
+            submitBtn.addEventListener('click', function(e){
+                e.stopPropagation();
+                const playerInitials = initialsEl.value;
+                const player = {initials: playerInitials, scoreValue: score};
+                const userInfo = JSON.stringify(player);
+                localStorage.setItem("user", userInfo);
+                window.location.href = "highscores.html";
+            });
+        };
     };
 };
