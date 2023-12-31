@@ -15,7 +15,8 @@
 
 
 
-// after user clicked an answer option, show the Feedback div with 'Correct!' or 'Wrong!' for a few seconds
+// when user answers correctly, show the Feedback div with 'Correct!' for a few seconds, add 20 to score
+// when user answer incorrectly, show Feedback with 'Incorrect!' for a few seconds, subtract 10 sec from timer, subtract 10 from score
 
 
 
