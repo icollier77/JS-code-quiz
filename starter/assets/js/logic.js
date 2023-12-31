@@ -13,26 +13,25 @@ const feedbackEl = document.querySelector('#feedback');
 
 let score = 0;
 let timeLeft = 75;
+let currentQuestionIndex = 0;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
     askQuestions();
+    // enterInitials();
 })
 
 // timer function
 function countdown() {
-    // let timeLeft = 75;
-    const timeInterval = setInterval(function () {
+    const timeInterval = setInterval(function() {
     if (timeLeft >= 0) {
         timeEl.textContent = timeLeft;
         timeLeft--;
     } else {
         timeEl.textContent = 0;
         clearInterval(timeInterval);
-        // Call the `displayMessage()` function
-        // displayMessage();
     }
     }, 1000);
 }
@@ -43,7 +42,6 @@ function showQuestions() {
 }
 // function to cycle through questions
 function askQuestions() {
-    let currentQuestionIndex = 0;
     displayQuestion();
 
     function displayQuestion() {
@@ -71,7 +69,6 @@ function askQuestions() {
                 // remove previous list of answers for previous questions
                 // answersList.parentNode.removeChild(answersList);
                 choicesDiv.removeChild(answersList);
-                console.log(answersList);
                 // show feedback for 1 sec
                 if(checkAnswer) {
                     feedbackEl.textContent = "Correct!";
@@ -84,25 +81,29 @@ function askQuestions() {
                 setTimeout(function() {
                     feedbackEl.classList.toggle("hide");
                 }, 1000);
-                
                 currentQuestionIndex++; // prepare to move to the next question
                 // display the next question
                 displayQuestion();
+                if (timeLeft < 0 || currentQuestionIndex === questions.length - 1) {
+                    questionsDiv.classList.toggle("hide");
+                    endScreenDiv.classList.toggle("hide");
+                    finalScoreEl.innerHTML = score;
+                    // add event handler on the Submit button
+                    submitBtn.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        const playerInitials = initialsEl.value;
+                        const player = {initials: playerInitials, scoreValue: score};
+                        const userInfo = JSON.stringify(player);
+                        localStorage.setItem("user", userInfo);
+                        window.location.href = "highscores.html";
+                    })
+                    
+                };
             });
         });
     };
 };
 
-
-
-// apply the question to #question-title and the answers to #choices
-
-// when user answers correctly, show the Feedback div with 'Correct!' for a few seconds, add 20 to score
-// when user answer incorrectly, show Feedback with 'Incorrect!' for a few seconds, subtract 10 sec from timer, subtract 10 from score
-
-// after the feedback timer finishes, switch to the next question
-
-// after a question is answered correctly, add 5 points; incorrectly - 0 points
 
 
 // after all Qs are answered OR timer = 0, show 'End-screen' div to display final score and enter Initials, save Initials and score to local storage as JSON
