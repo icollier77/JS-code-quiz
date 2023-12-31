@@ -4,15 +4,14 @@ const startScreenDiv = document.querySelector('#start-screen');
 const startBtn = document.querySelector('#start');
 const questionsDiv = document.querySelector('#questions');
 const questionTitleEl = document.querySelector('#question-title');
-const choicesEl = document.querySelector('#choices');
+const choicesDiv = document.querySelector('#choices');
 const endScreenDiv = document.querySelector('#end-screen');
 const finalScoreEl = document.querySelector('#final-score');
 const initialsEl = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
-let score = 0;
-let currentQuestionIndex = 0;
+// let score = 0;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
@@ -36,50 +35,73 @@ function countdown() {
     }
     }, 1000);
 }
-
-// hide start div, show 1st question
-function showQuestions(event) {
+// function to hide start div, show questions div
+function showQuestions() {
     startScreenDiv.classList.add("hide");
     questionsDiv.classList.toggle("hide");
 }
-    
-// cycle through questions
+// function to cycle through questions
 function askQuestions() {
-    let currentQuestion = questions[currentQuestionIndex];
+    let currentQuestionIndex = 0;
+    displayQuestion();
 
-}
-
-function askQuestions() {
-    for (let i = 0; i < questions.length; i++) {
-        questionTitleEl.textContent = questions[i].question;
+    function displayQuestion() {
+        // display question
+        questionTitleEl.textContent = questions[currentQuestionIndex].question;
+        
+        // create div for list of answers
         const answersList = document.createElement('ol');
-        questionTitleEl.appendChild(answersList);
-        let answers = questions[i].answers;
-        for (let j = 0; j < answers.length; j++) {
-            const answerOption = document.createElement('li');
-            answerOption.textContent = answers[j].text;
-            answersList.append(answerOption);
-        }
-    }
-}
+        choicesDiv.appendChild(answersList);
 
+        // create answers array
+        const answers = questions[currentQuestionIndex].answers;
 
+        // create lis with answer options, add to the list
+        answers.forEach(answer => {
+            const optionEl = document.createElement('button'); // create html element in DOM for answer option
+            optionEl.classList.add("choices"); // add styling
+            let answerText = document.createTextNode(answer.text); // add a node with answer's text
+            let checkAnswer = answer.correct; // extract info about correctness of the answer
+            optionEl.appendChild(answerText); // add text to the html element
+            answersList.appendChild(optionEl); // add answer option to the list of answers
+            // add event handler for click on answer
+            optionEl.addEventListener('click', (event) => {
+                event.stopPropagation(); // prevent event bubbling
+                currentQuestionIndex++; // prepare to move to the next question
+                // show feedback for 1 sec
+                if(checkAnswer) {
+                    feedbackEl.textContent = "Correct!";
+                } else {
+                    feedbackEl.textContent = "Incorrect!";
+                }
+                feedbackEl.classList.toggle("hide");
+                setTimeout(function() {
+                    feedbackEl.classList.toggle("hide");
+                }, 1000);
+                // remove previous list of answers for previous questions
+                answersList.parentNode.removeChild(answersList);
+                console.log(answersList);
+                // display the next question
+                displayQuestion();
+                // if no more questions OR timer is up, switch to the Scores screen
+                if (currentQuestionIndex > questions.length || timeLeft === 0) {
+                    questionsDiv.classList.toggle("hide");
+                    endScreenDiv.classList.toggle("hide");
+                } else {
+                    displayQuestion();
+                }
+            });
+        });
+    };
+};
 
-// when timer = 0, switch to the 
 
 // apply the question to #question-title and the answers to #choices
-
-
 
 // when user answers correctly, show the Feedback div with 'Correct!' for a few seconds, add 20 to score
 // when user answer incorrectly, show Feedback with 'Incorrect!' for a few seconds, subtract 10 sec from timer, subtract 10 from score
 
-
-
 // after the feedback timer finishes, switch to the next question
-
-
-
 
 // after a question is answered correctly, add 5 points; incorrectly - 0 points
 
