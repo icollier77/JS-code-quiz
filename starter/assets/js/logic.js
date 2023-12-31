@@ -52,11 +52,16 @@ function askQuestions() {
 function askQuestions() {
     for (let i = 0; i < questions.length; i++) {
         questionTitleEl.textContent = questions[i].question;
-        console.log(questions[i].question);
-        // for (let j = 0; j < answers.length; j++) {
+        const answersList = document.createElement('ol');
+        questionTitleEl.appendChild(answersList);
+        let answers = questions[i].answers;
+        for (let j = 0; j < answers.length; j++) {
+            const answerOption = document.createElement('li');
+            answerOption.textContent = answers[j].text;
+            answersList.append(answerOption);
         }
     }
-
+}
 
 
 

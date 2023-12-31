@@ -1,6 +1,3 @@
-
-
-
 // a object with questions and their answers
 const questions = [
     {
