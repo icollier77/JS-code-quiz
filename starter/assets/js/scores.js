@@ -15,4 +15,5 @@ highscoresList.appendChild(highscoreEl);
 // set the 'Clear Scores' button to clear the scores
 clearScores.addEventListener('click', function(){
     localStorage.clear();
+    highscoresList.removeChild(highscoreEl);
 });

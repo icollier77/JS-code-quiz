@@ -84,7 +84,7 @@ function askQuestions() {
                 currentQuestionIndex++; // prepare to move to the next question
                 // display the next question
                 displayQuestion();
-                if (timeLeft < 0 || currentQuestionIndex === questions.length - 1) {
+                if (timeLeft <= 0 || currentQuestionIndex === questions.length - 1) {
                     questionsDiv.classList.toggle("hide");
                     endScreenDiv.classList.toggle("hide");
                     finalScoreEl.innerHTML = score;
