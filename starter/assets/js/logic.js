@@ -11,7 +11,8 @@ const initialsEl = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
-// let score = 0;
+let score = 0;
+let timeLeft = 75;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
@@ -22,7 +23,7 @@ startBtn.addEventListener('click', function() {
 
 // timer function
 function countdown() {
-    let timeLeft = 75;
+    // let timeLeft = 75;
     const timeInterval = setInterval(function () {
     if (timeLeft >= 0) {
         timeEl.textContent = timeLeft;
@@ -67,33 +68,31 @@ function askQuestions() {
             // add event handler for click on answer
             optionEl.addEventListener('click', (event) => {
                 event.stopPropagation(); // prevent event bubbling
-                currentQuestionIndex++; // prepare to move to the next question
+                // remove previous list of answers for previous questions
+                // answersList.parentNode.removeChild(answersList);
+                choicesDiv.removeChild(answersList);
+                console.log(answersList);
                 // show feedback for 1 sec
                 if(checkAnswer) {
                     feedbackEl.textContent = "Correct!";
+                    score += 5;
                 } else {
                     feedbackEl.textContent = "Incorrect!";
+                    timeLeft -= 5;
                 }
                 feedbackEl.classList.toggle("hide");
                 setTimeout(function() {
                     feedbackEl.classList.toggle("hide");
                 }, 1000);
-                // remove previous list of answers for previous questions
-                answersList.parentNode.removeChild(answersList);
-                console.log(answersList);
+                
+                currentQuestionIndex++; // prepare to move to the next question
                 // display the next question
                 displayQuestion();
-                // if no more questions OR timer is up, switch to the Scores screen
-                if (currentQuestionIndex > questions.length || timeLeft === 0) {
-                    questionsDiv.classList.toggle("hide");
-                    endScreenDiv.classList.toggle("hide");
-                } else {
-                    displayQuestion();
-                }
             });
         });
     };
 };
+
 
 
 // apply the question to #question-title and the answers to #choices
