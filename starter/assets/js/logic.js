@@ -1,11 +1,11 @@
 // all const for html elements
 const timeEl = document.querySelector('#time');
-const startScreenEl = document.querySelector('#start-screen');
+const startScreenDiv = document.querySelector('#start-screen');
 const startBtn = document.querySelector('#start');
-const questionsEl = document.querySelector('#questions');
+const questionsDiv = document.querySelector('#questions');
 const questionTitleEl = document.querySelector('#question-title');
 const choicesEl = document.querySelector('#choices');
-const endScreenEl = document.querySelector('#end-screen');
+const endScreenDiv = document.querySelector('#end-screen');
 const finalScoreEl = document.querySelector('#final-score');
 const initialsEl = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
@@ -15,12 +15,14 @@ const feedbackEl = document.querySelector('#feedback');
 // set score to 0
 let score = 0;
 
-// after the 'Start Quiz' button is clicked, set the timer to 75 seconds and start counting down
+// after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
     countdown();
-    console.log(timeLeft);
+    showQuestions();
+    
 })
 
+// timer function
 function countdown() {
     let timeLeft = 75;
     const timeInterval = setInterval(function () {
@@ -36,11 +38,16 @@ function countdown() {
     }, 1000);
 }
 
+// hide start div, show 1st question
+function showQuestions(event) {
+    startScreenDiv.classList.add("hide");
+    questionsDiv.classList.toggle("hide");
+}
+    
+// cycle through questions
+
+
 // when timer = 0, switch to the 
-
-
-// when Start button is clicked, hide the #Start-screen div and display the 1st question
-
 
 // apply the question to #question-title and the answers to #choices
 
