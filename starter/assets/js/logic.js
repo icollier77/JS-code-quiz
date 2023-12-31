@@ -27,7 +27,6 @@ function countdown() {
     const timeInterval = setInterval(function() {
     if (timeLeft >= 0) {
         timeEl.textContent = timeLeft;
-        console.log(`Time left is ${timeLeft}`);
         timeLeft--;
     } else {
         timeEl.textContent = 0;
@@ -66,7 +65,6 @@ function displayQuestion() {
         optionEl.addEventListener('click', (event) => {
             event.stopPropagation(); // prevent event bubbling
             // remove previous list of answers for previous questions
-            // answersList.parentNode.removeChild(answersList);
             choicesDiv.removeChild(answersList);
             // show feedback for 1 sec
             if(checkAnswer) {
@@ -90,7 +88,6 @@ function displayQuestion() {
         questionsDiv.classList.toggle("hide");
         endScreenDiv.classList.toggle("hide");
         finalScoreEl.textContent = score;
-        console.log(`final time is ${timeLeft}`);
         // add event handler on the Submit button
         submitBtn.addEventListener('click', function(e){
             e.stopPropagation();
