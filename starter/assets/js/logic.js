@@ -11,12 +11,30 @@ const initialsEl = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
-// set timer to 0
-// set #final-score to 0
 
+// set score to 0
+let score = 0;
 
 // after the 'Start Quiz' button is clicked, set the timer to 75 seconds and start counting down
+startBtn.addEventListener('click', function() {
+    countdown();
+    console.log(timeLeft);
+})
 
+function countdown() {
+    let timeLeft = 75;
+    const timeInterval = setInterval(function () {
+    if (timeLeft >= 0) {
+        timeEl.textContent = timeLeft;
+        timeLeft--;
+    } else {
+        timeEl.textContent = 0;
+        clearInterval(timeInterval);
+        // Call the `displayMessage()` function
+        // displayMessage();
+    }
+    }, 1000);
+}
 
 // when timer = 0, switch to the 
 
