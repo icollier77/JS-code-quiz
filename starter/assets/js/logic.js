@@ -55,15 +55,26 @@ function askQuestion() {
 
     // create lis with answer options, add to the list
     answers.forEach(answer => {
-        const optionEl = document.createElement('button'); // create html element in DOM for answer option
-        optionEl.classList.add("choices"); // add styling
+        const optionLi = document.createElement('li'); // create html element in DOM for answer option
+
+        optionLi.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!!
+  
         let answerText = document.createTextNode(answer.text); // add a node with answer's text
         let correctAnswer = answer.correct; // extract info about correctness of the answer
-        optionEl.appendChild(answerText); // add text to the html element
-        answersList.appendChild(optionEl); // add answer option to the list of answers
+        optionLi.appendChild(answerText); // add text to the html element
+        const optionBtn = document.createElement('button');
+        optionBtn.classList.add("choices"); // add styling
+        optionBtn.appendChild(optionLi);
+        answersList.appendChild(optionBtn); // add answer option to the list of answers
+
+        // const optionEl = document.createElement('button'); // create html element in DOM for answer option
+        // optionEl.classList.add("choices"); // add styling
+        // let answerText = document.createTextNode(answer.text); // add a node with answer's text
+        // let correctAnswer = answer.correct; // extract info about correctness of the answer
+        // optionEl.appendChild(answerText); // add text to the html element
+        // answersList.appendChild(optionEl); // add answer option to the list of answers
         // when user clicks on answer option
-        optionEl.addEventListener('click', (event) => {
-            event.stopPropagation(); // prevent event bubbling
+        optionBtn.addEventListener('click', (event) => {
             // remove list of answers for previous questions
             choicesDiv.removeChild(answersList);
             // show feedback for 1 sec
@@ -91,16 +102,25 @@ function askQuestion() {
 };
 
 // function to switch from questions to the end screen
-function showEndScreen(){
+function showEndScreen() {
     questionsDiv.classList.toggle("hide");
     endScreenDiv.classList.toggle("hide");
     finalScoreEl.textContent = score;
 }
 
 // function to add user's initials and store score in local storage
+// function addPlayer() {
+//     submitBtn.addEventListener('click', function(e){
+//         const playerInitials = initialsEl.value;
+//         const player = {initials: playerInitials, scoreValue: score};
+//         const userInfo = JSON.stringify(player);
+//         localStorage.setItem("user", userInfo);
+//         window.location.href = "highscores.html";
+//     });
+// }
+
 function addPlayer() {
     submitBtn.addEventListener('click', function(e){
-        e.stopPropagation();
         const playerInitials = initialsEl.value;
         const player = {initials: playerInitials, scoreValue: score};
         const userInfo = JSON.stringify(player);
