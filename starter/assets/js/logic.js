@@ -58,7 +58,7 @@ function askQuestion() {
         const optionEl = document.createElement('button'); // create html element in DOM for answer option
         optionEl.classList.add("choices"); // add styling
         let answerText = document.createTextNode(answer.text); // add a node with answer's text
-        let checkAnswer = answer.correct; // extract info about correctness of the answer
+        let correctAnswer = answer.correct; // extract info about correctness of the answer
         optionEl.appendChild(answerText); // add text to the html element
         answersList.appendChild(optionEl); // add answer option to the list of answers
         // add event handler for click on answer
@@ -67,7 +67,7 @@ function askQuestion() {
             // remove previous list of answers for previous questions
             choicesDiv.removeChild(answersList);
             // show feedback for 1 sec
-            if(checkAnswer) {
+            if(correctAnswer) {
                 feedbackEl.textContent = "Correct!";
                 score += 5;
             } else {
