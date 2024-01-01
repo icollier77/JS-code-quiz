@@ -1,4 +1,4 @@
-// all const for html elements
+// const variables for html elements
 const timeEl = document.querySelector('#time');
 const startScreenDiv = document.querySelector('#start-screen');
 const startBtn = document.querySelector('#start');
@@ -15,7 +15,7 @@ let score = 0;
 let currentQuestionIndex = 0;
 let timeLeft = 75;
 
-// after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
+// on Start button click, start the timer, hide start screen div, show questions div
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
@@ -35,13 +35,13 @@ function countdown() {
     }, 1000);
 }
 
-// function to hide start div, show questions div
+// hide start div, show questions div
 function showQuestions() {
     startScreenDiv.classList.add("hide");
     questionsDiv.classList.toggle("hide");
 }
 
-// function to ask questions
+// ask quiz questions, show answer options
 function askQuestion() {
     // display question
     questionTitleEl.textContent = questions[currentQuestionIndex].question;
@@ -101,30 +101,21 @@ function askQuestion() {
     };
 };
 
-// function to switch from questions to the end screen
+// switch from questions div to the end screen div
 function showEndScreen() {
     questionsDiv.classList.toggle("hide");
     endScreenDiv.classList.toggle("hide");
     finalScoreEl.textContent = score;
 }
 
-// function to add user's initials and store score in local storage
-// function addPlayer() {
-//     submitBtn.addEventListener('click', function(e){
-//         const playerInitials = initialsEl.value;
-//         const player = {initials: playerInitials, scoreValue: score};
-//         const userInfo = JSON.stringify(player);
-//         localStorage.setItem("user", userInfo);
-//         window.location.href = "highscores.html";
-//     });
-// }
-
+// extract array of players from local storage (or create array), add new player and score
 function addPlayer() {
     submitBtn.addEventListener('click', function(e){
+        let playerList = JSON.parse(localStorage.getItem('userList')) || [];
         const playerInitials = initialsEl.value;
-        const player = {initials: playerInitials, scoreValue: score};
-        const userInfo = JSON.stringify(player);
-        localStorage.setItem("user", userInfo);
+        const newPlayer = {initials: playerInitials, scoreValue: score};
+        playerList.push(newPlayer);
+        localStorage.setItem('userList', JSON.stringify(playerList));
         window.location.href = "highscores.html";
     });
 }
