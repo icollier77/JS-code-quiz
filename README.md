@@ -10,16 +10,16 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 <div align="center">
 <!-- Webpage icon -->
   <a href="https://icollier77.github.io/password-generator/" target="_blank">
-    <img src="./assets/password-icon.jpg" alt="Logo" width="80" height="80">
+    <img src="./asset" alt="Logo" width="80" height="80">
   </a>
 
-<h1 align="center">Password Generator</h1>
+<h1 align="center">'Life in the UK
 
-  <p align="center"> This is a mini application built in JavaScript that can generate a random password in accordance with set requirements.</p>
+  <p align="center"> Those applying for British citizenship or settlement in the UK have to take "Life in the UK" test. This quiz helps applicants test their knowledge.</p>
     <!-- links to deployment -->
-    <a href="https://icollier77.github.io/password-generator/" target="_blank">Password Generator</a>
+    <a href="https://icollier77.github.io/password-generator/" target="_blank">'Life in the UK' quiz</a>
     ·
-    <a href="https://github.com/icollier77/password-generator" target="_blank">GitHub repo</a>
+    <a href="https://github.com/icollier77/life-in-uk-code-quiz" target="_blank">GitHub repo</a>
     ·
   <br>
   <br>
@@ -61,28 +61,20 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 ## About The Project
 
 ### Project Goal
-The goal of this project is practice intermediate JavaScript skills (especially functions) by building a web app that can generate a random password that meets specifications provided by the user.
+The goal of this project is practice Web APIs: DOM manipulation and using local storage.
 
 ### Project Specifications
 
-<p>The task for this challenges outlined the following requirements:</p>
+<p>The task for this challenges outlined the following requirements.</p>
 
-<p><b>The application must:</b></p>
+<p><b>The features of the quiz app:</b></p>
 <ol>
-  <li>Generate a password when the button is clicked.</li>
-  <li>Present a series of prompts for password criteria:</li>
-    <ul>
-      <li>Length of password: At least 8 characters but no more than 128.</li>
-      <li>Character types:</li>
-        <ul>
-        <li>Lowercase</li>
-        <li>Uppercase</li>
-        <li>Numeric</li>
-        <li>Special characters ($@%&*, etc.)</li>
-        </ul>
-    </ul>
-  <li>Code should validate for each input and at least one character type should be selected.</li>
-  <li>Once all prompts are answered, the password should be generated and displayed in an alert or written to the page.</li>
+  <li>A start button that when clicked a timer starts and the first question appears.</li>
+  <li>Questions contain buttons for each answer.</li>
+  <li>When answer is clicked, the next question appears.</li>
+  <li>If the answer clicked was incorrect then subtract time from the clock.</li>
+  <li>The quiz should end when all questions are answered or the timer reaches 0.</li>
+  <li>When the game ends, it should display their score and give the user the ability to save their initials and their score.</li>
 </ol>
 
 ### Sample App
@@ -160,21 +152,26 @@ You can find the password generator app and its corresponding code here:
 <details>
     <summary>Attribution</summary>
 
-- Fingerprint icon from [Freepixel][password-icon-url].
+- Quiz icon from [Flaticon][quiz-icon-url] created by Vitaly Gorbachev.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [deployed-gif]: ./assets/password-generator-gif.gif
 [deployed-url]: https://icollier77.github.io/password-generator/
-[repo-url]: https://github.com/icollier77/password-generator
-[initial-img]: ./assets/initial-image.png
+
+[repo-url]: https://github.com/icollier77/life-in-uk-code-quiz
+
+[initial-img]: ./assets/08-web-apis-challenge-demo.gif
+
 [html-badge]: https://img.shields.io/badge/HTML-blue?logo=html5&logoColor=white
 [css-badge]: https://img.shields.io/badge/CSS-orange?logo=CSS3
 [js-badge]: https://img.shields.io/badge/JavaScript-purple?logo=Javascript&logoColor=white
 [html-url]: https://www.w3schools.com/html/
 [css-url]: https://www.w3schools.com/css/default.asp
 [js-url]: https://www.w3schools.com/js/default.asp
-[password-icon-url]: https://www.freepixel.com/graphics/password/free-icons-fingerprint-button-icon-in-yellow-and-blue-color-1106856780
+
+[quiz-icon-url]: https://www.flaticon.com/free-icons/quiz
+
 [bootcamp-url]: https://www.edx.org/boot-camps/coding/skills-bootcamp-in-front-end-web-development
 [password-video]: https://www.youtube.com/watch?v=Xrsb9SiF3a8
 [shuffle-array-url]: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 
