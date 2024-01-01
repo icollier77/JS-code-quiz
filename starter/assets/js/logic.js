@@ -13,25 +13,25 @@ const feedbackEl = document.querySelector('#feedback');
 
 let score = 0;
 let currentQuestionIndex = 0;
-let timeLeft = 15;
+let timeLeft = 75;
 
 // after the 'Start Quiz' button is clicked, start the timer, hide the #Start-screen div and display the 1st question
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
-    displayQuestion();
+    askQuestion();
 })
 
 // timer function
 function countdown() {
     const timeInterval = setInterval(function() {
-    if (timeLeft >= 0) {
-        timeEl.textContent = timeLeft;
-        timeLeft--;
-    } else {
-        timeEl.textContent = 0;
-        clearInterval(timeInterval);
-    };
+        if (timeLeft >= 0) {
+            timeEl.textContent = timeLeft;
+            timeLeft--;
+        } else {
+            timeEl.textContent = 0;
+            clearInterval(timeInterval);
+        };
     }, 1000);
 }
 
@@ -42,7 +42,7 @@ function showQuestions() {
 }
 
 // function to ask questions
-function displayQuestion() {
+function askQuestion() {
     // display question
     questionTitleEl.textContent = questions[currentQuestionIndex].question;
     
@@ -79,8 +79,8 @@ function displayQuestion() {
                 feedbackEl.classList.toggle("hide");
             }, 1000);
             currentQuestionIndex++; // prepare to move to the next question
-            // display the next question
-            displayQuestion();                
+            // ask the next question
+            askQuestion();                
         });
     });
     
