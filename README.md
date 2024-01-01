@@ -1,88 +1,181 @@
-# Module 6 Challenge Web APIs: Code Quiz
-
-## Your Task
-
-As you proceed in your journey to becoming a front-end web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges. 
-
-To help you become familiar with these tests and give you a chance to apply the skills from this module, this week’s challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework has taught you all the skills you need to succeed in this challenge.
+# Module 6 Challenge: Timed Quiz
+Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed quiz app.
 
 
-## User Story
+****
+<a name="readme-top"></a>
 
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<!-- Webpage icon -->
+  <a href="https://icollier77.github.io/password-generator/" target="_blank">
+    <img src="./assets/password-icon.jpg" alt="Logo" width="80" height="80">
+  </a>
 
-## Acceptance Criteria
+<h1 align="center">Password Generator</h1>
 
-Create a code quiz that contains the following requirements:
-
-* A start button that when clicked a timer starts and the first question appears.
- 
-  * Questions contain buttons for each answer.
-  * 
-  * When answer is clicked, the next question appears
-  * 
-  * If the answer clicked was incorrect then subtract time from the clock
-
-* The quiz should end when all questions are answered or the timer reaches 0.
-
-  * When the game ends, it should display their score and give the user the ability to save their initials and their score
-  
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![Animation of code quiz. Presses button to start quiz. Clicks the button for the answer to each question, displays if answer was correct or incorrect. Quiz finishes and displays high scores. User adds their intials, then clears their intials and starts over.](./assets/08-web-apis-challenge-demo.gif)
-
-## Grading Requirements
-
-This challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+  <p align="center"> This is a mini application built in JavaScript that can generate a random password in accordance with set requirements.</p>
+    <!-- links to deployment -->
+    <a href="https://icollier77.github.io/password-generator/" target="_blank">Password Generator</a>
+    ·
+    <a href="https://github.com/icollier77/password-generator" target="_blank">GitHub repo</a>
+    ·
+  <br>
+  <br>
+</div>
 
 
-## Review
 
-You are required to submit BOTH of the following for review:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#project-goal">Project Goal</a></li>
+        <li><a href="#project-specifications">Project Specifications</a></li>
+        <li><a href="#sample-app">Sample App</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#development">Development</a></li>
+      <ul>
+        <li><a href="important-source">Important Source</a></li>
+        <li><a href="different-logical-approach">Different Logical Approach</a></li>
+        <li><a href="adding-randomization">Adding Randomization</a></li>
+        <li><a href="modular-functions">Modular Functions</a></li>
+      </ul>
+    <li><a href="#deployed-project">Deployed Project</a></li>
+      <ul>
+        <li><a href="#deployed-application">Deployed Application</a></li>
+        <li><a href="#links-to-deployed-project">Links to Deployed Project</a></li>
+      </ul>
+  </ol>
+</details>
 
-* The URL of the functional, deployed application.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
----
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+### Project Goal
+The goal of this project is practice intermediate JavaScript skills (especially functions) by building a web app that can generate a random password that meets specifications provided by the user.
+
+### Project Specifications
+
+<p>The task for this challenges outlined the following requirements:</p>
+
+<p><b>The application must:</b></p>
+<ol>
+  <li>Generate a password when the button is clicked.</li>
+  <li>Present a series of prompts for password criteria:</li>
+    <ul>
+      <li>Length of password: At least 8 characters but no more than 128.</li>
+      <li>Character types:</li>
+        <ul>
+        <li>Lowercase</li>
+        <li>Uppercase</li>
+        <li>Numeric</li>
+        <li>Special characters ($@%&*, etc.)</li>
+        </ul>
+    </ul>
+  <li>Code should validate for each input and at least one character type should be selected.</li>
+  <li>Once all prompts are answered, the password should be generated and displayed in an alert or written to the page.</li>
+</ol>
+
+### Sample App
+
+<p>We were provided with the original image of the web app:
+
+![inital screenshot][initial-img]
+</p>
+
+
+### Built With
+
+We were provided with files already built in:
+* [![HTML][html-badge]][html-url]
+* [![CSS][css-badge]][css-url]
+
+Basic data was provided (such as arrays of character types). I wrote the code in:
+* [![JavaScript][js-badge]][js-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- The build process -->
+## Development
+
+I had 2 iterations of the code for the assignment. First, I created an app where all character types were joined in a mega-array and a password was randomly generated from it. When testing this solution, I realized that this approach did not guarantee that at least one character from each selected character set would be included in the generated password.
+
+### Important source
+So I changed my approach. This [video][password-video] was very helpful in directing my thinking. I also used parts of the code mentioned in that video in my solution.
+* Namely, I used the code shown on 14:05 in my functions `addChar()`.
+* I also referred to the code shown on 16:22 in my function `finishPassword()`.
+* I used the method shown starting on 16:53 to connect my JavaScript to HTML to make the button interactive and to print out the generated password into the textbox (rather than displaying it on the console or via an alert).
+
+### Different logical approach
+
+However, as the assignment specifications were quite different from this video, my solution diverged significantly. I had to ask the user for input (i.e., which character sets to use) and therefore, had to 1) validate the input; 2) loop if no valid input is provided.
+
+### Adding randomization
+
+I also did not like that all character sets, when joined together in a mega-array, still had a predictable structure. So I used the [code snippet 446][shuffle-array-url] from StackOverflow to create a function that would **randomize the mega-array** before the application picks additional characters from it to reach the specified password length.
+
+The next problem I encountered was that while the generated password had the specified length, and its second part was generated from a randomized array, the first part still followed a predictable structure. So, I created one more function using [code snippet 64][shuffle-string-url] to **re-shuffle the password string** 10 times to ensure that the password order could not be guessed.
+
+### Modular functions
+
+I broke each set of actions into a function, trying to balance modular approach and the DRY principle. Then I united 4 functions in a single function `createPassword()` and connected it to the html `button` element.
+
+The modular approach allows for easier testing and debugging during development and also helps anyone else to see the logic flow.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Deployed project -->
+## Deployed project
+
+The project is now live.
+
+### Deployed application
+
+The deployed page looks like this:
+
+![Deployed page][deployed-gif]
+
+
+### Links to deployed project
+
+You can find the password generator app and its corresponding code here:
+
+- [ ] [Password Generator][deployed-url]
+- [ ] [Project repo][repo-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+#### Credit:
+<details>
+    <summary>Attribution</summary>
+
+- Fingerprint icon from [Freepixel][password-icon-url].
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[deployed-gif]: ./assets/password-generator-gif.gif
+[deployed-url]: https://icollier77.github.io/password-generator/
+[repo-url]: https://github.com/icollier77/password-generator
+[initial-img]: ./assets/initial-image.png
+[html-badge]: https://img.shields.io/badge/HTML-blue?logo=html5&logoColor=white
+[css-badge]: https://img.shields.io/badge/CSS-orange?logo=CSS3
+[js-badge]: https://img.shields.io/badge/JavaScript-purple?logo=Javascript&logoColor=white
+[html-url]: https://www.w3schools.com/html/
+[css-url]: https://www.w3schools.com/css/default.asp
+[js-url]: https://www.w3schools.com/js/default.asp
+[password-icon-url]: https://www.freepixel.com/graphics/password/free-icons-fingerprint-button-icon-in-yellow-and-blue-color-1106856780
+[bootcamp-url]: https://www.edx.org/boot-camps/coding/skills-bootcamp-in-front-end-web-development
+[password-video]: https://www.youtube.com/watch?v=Xrsb9SiF3a8
+[shuffle-array-url]: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 
+[shuffle-string-url]: https://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript

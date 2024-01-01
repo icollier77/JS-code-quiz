@@ -7,7 +7,7 @@ const questionTitleEl = document.querySelector('#question-title');
 const choicesDiv = document.querySelector('#choices');
 const endScreenDiv = document.querySelector('#end-screen');
 const finalScoreEl = document.querySelector('#final-score');
-const initialsEl = document.querySelector('#initials');
+const initialsInput = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
@@ -59,28 +59,32 @@ function askQuestion() {
     // create lis with answer options, add to the list
     answers.forEach(answer => {
         const optionLi = document.createElement('li'); // create html element in DOM for answer option
+        // optionLi.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!
+        // const allLis = document.querySelectorAll('li:nth-child(odd)');
+        // allLis.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!!
 
-        optionLi.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!!
-  
         let answerText = document.createTextNode(answer.text); // add a node with answer's text
         let correctAnswer = answer.correct; // extract info about correctness of the answer
         optionLi.appendChild(answerText); // add text to the html element
-        const optionBtn = document.createElement('button');
+        const optionBtn = document.createElement('button');       
+
         optionBtn.classList.add("choices"); // add styling
         optionBtn.appendChild(optionLi);
         answersList.appendChild(optionBtn); // add answer option to the list of answers
 
+        // ---------- previous version ------------
         // const optionEl = document.createElement('button'); // create html element in DOM for answer option
         // optionEl.classList.add("choices"); // add styling
         // let answerText = document.createTextNode(answer.text); // add a node with answer's text
         // let correctAnswer = answer.correct; // extract info about correctness of the answer
         // optionEl.appendChild(answerText); // add text to the html element
         // answersList.appendChild(optionEl); // add answer option to the list of answers
+        
         // when user clicks on answer option
         optionBtn.addEventListener('click', (event) => {
             // remove list of answers for previous questions
             choicesDiv.removeChild(answersList);
-            // show feedback for 1 sec
+            // add text to feedback, change score or timeLeft
             if(correctAnswer) {
                 feedbackEl.textContent = "Correct!";
                 score += 5;
@@ -88,6 +92,7 @@ function askQuestion() {
                 feedbackEl.textContent = "Incorrect!";
                 timeLeft -= 5;
             }
+            // show feedback for 1 sec
             feedbackEl.classList.toggle("hide");
             setTimeout(function() {
                 feedbackEl.classList.toggle("hide");
@@ -113,9 +118,9 @@ function showEndScreen() {
 
 // -- extract array of players from local storage (or create array), add new player and score --
 function addPlayer() {
-    submitBtn.addEventListener('click', function(e){
+    submitBtn.addEventListener('click', function(){
         let playerList = JSON.parse(localStorage.getItem('userList')) || [];
-        const playerInitials = initialsEl.value;
+        const playerInitials = initialsInput.value;
         const newPlayer = {initials: playerInitials, scoreValue: score};
         playerList.push(newPlayer);
         localStorage.setItem('userList', JSON.stringify(playerList));
