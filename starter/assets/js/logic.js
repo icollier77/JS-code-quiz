@@ -83,19 +83,28 @@ function askQuestion() {
             askQuestion();                
         });
     });
-    
+    // when time runs out OR no more questions
     if (timeLeft <= 0 || currentQuestionIndex === questions.length - 1) {
-        questionsDiv.classList.toggle("hide");
-        endScreenDiv.classList.toggle("hide");
-        finalScoreEl.textContent = score;
-        // when user clicks on Submit button
-        submitBtn.addEventListener('click', function(e){
-            e.stopPropagation();
-            const playerInitials = initialsEl.value;
-            const player = {initials: playerInitials, scoreValue: score};
-            const userInfo = JSON.stringify(player);
-            localStorage.setItem("user", userInfo);
-            window.location.href = "highscores.html";
-        });
+        showEndScreen();
+        addPlayer();
     };
 };
+
+// function to switch from questions to the end screen
+function showEndScreen(){
+    questionsDiv.classList.toggle("hide");
+    endScreenDiv.classList.toggle("hide");
+    finalScoreEl.textContent = score;
+}
+
+// function to add user's initials and store score in local storage
+function addPlayer() {
+    submitBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        const playerInitials = initialsEl.value;
+        const player = {initials: playerInitials, scoreValue: score};
+        const userInfo = JSON.stringify(player);
+        localStorage.setItem("user", userInfo);
+        window.location.href = "highscores.html";
+    });
+}

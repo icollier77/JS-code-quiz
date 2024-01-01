@@ -1,6 +1,7 @@
 const highscoresList = document.querySelector("#highscores");
 const clearScores = document.querySelector("#clear");
 
+
 // pull scores from local storage and display on the Highscore
 const newUserScore = JSON.parse(localStorage.getItem("user"));
 const userInitials = newUserScore.initials;
