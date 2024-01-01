@@ -9,15 +9,15 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 <br />
 <div align="center">
 <!-- Webpage icon -->
-  <a href="https://icollier77.github.io/password-generator/" target="_blank">
-    <img src="./asset" alt="Logo" width="80" height="80">
+  <a href="https://icollier77.github.io/life-in-uk-code-quiz/" target="_blank">
+    <img src="./assets/quiz.png" alt="Logo" width="80" height="80">
   </a>
 
-<h1 align="center">'Life in the UK
+<h1 align="center">'Life in the UK</h1>
 
   <p align="center"> Those applying for British citizenship or settlement in the UK have to take "Life in the UK" test. This quiz helps applicants test their knowledge.</p>
     <!-- links to deployment -->
-    <a href="https://icollier77.github.io/password-generator/" target="_blank">'Life in the UK' quiz</a>
+    <a href="https://icollier77.github.io/life-in-uk-code-quiz/" target="_blank">"Life in the UK" quiz</a>
     ·
     <a href="https://github.com/icollier77/life-in-uk-code-quiz" target="_blank">GitHub repo</a>
     ·
@@ -42,10 +42,10 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
     </li>
     <li><a href="#development">Development</a></li>
       <ul>
-        <li><a href="important-source">Important Source</a></li>
-        <li><a href="different-logical-approach">Different Logical Approach</a></li>
-        <li><a href="adding-randomization">Adding Randomization</a></li>
-        <li><a href="modular-functions">Modular Functions</a></li>
+        <li><a href="timer-code">Timer code</a></li>
+        <li><a href="timer-condition">Timer condition</a></li>
+        <li><a href="local-storage">Local storage</a></li>
+        <li><a href="removing-multiple-children">Removing multiple children</a></li>
       </ul>
     <li><a href="#deployed-project">Deployed Project</a></li>
       <ul>
@@ -79,7 +79,7 @@ The goal of this project is practice Web APIs: DOM manipulation and using local 
 
 ### Sample App
 
-<p>We were provided with the original image of the web app:
+<p>We were provided with the original demo of the quiz web app:
 
 ![inital screenshot][initial-img]
 </p>
@@ -87,41 +87,56 @@ The goal of this project is practice Web APIs: DOM manipulation and using local 
 
 ### Built With
 
-We were provided with files already built in:
-* [![HTML][html-badge]][html-url]
-* [![CSS][css-badge]][css-url]
+<p>We were provided with files already built in:</p>
 
-Basic data was provided (such as arrays of character types). I wrote the code in:
-* [![JavaScript][js-badge]][js-url]
+[![HTML][html-badge]][html-url] [![CSS][css-badge]][css-url]
+
+<p>I wrote the code in:</p>
+
+[![JavaScript][js-badge]][js-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- The build process -->
 ## Development
 
-I had 2 iterations of the code for the assignment. First, I created an app where all character types were joined in a mega-array and a password was randomly generated from it. When testing this solution, I realized that this approach did not guarantee that at least one character from each selected character set would be included in the generated password.
+This was the most challenging assignment up to now. Mastering the concepts of DOM, ways of manipulating DOM, creating new variables for it, and storing data in local storage as JSON were quite hard. I spent most of my time studying and trying to internalize the concepts.
 
-### Important source
-So I changed my approach. This [video][password-video] was very helpful in directing my thinking. I also used parts of the code mentioned in that video in my solution.
-* Namely, I used the code shown on 14:05 in my functions `addChar()`.
-* I also referred to the code shown on 16:22 in my function `finishPassword()`.
-* I used the method shown starting on 16:53 to connect my JavaScript to HTML to make the button interactive and to print out the generated password into the textbox (rather than displaying it on the console or via an alert).
+When I started working on the assignment, I tried to use various loops to cycle through questions and answers. I quickly realized that regular loops do not work here as they run through all iterations without stopping for user input (which is required in this case: user has to select one of the answer choices).
 
-### Different logical approach
+Once I figured out how to solve this challenge, the rest of the work was quite fast. However, I did get stuck on 2 items:
 
-However, as the assignment specifications were quite different from this video, my solution diverged significantly. I had to ask the user for input (i.e., which character sets to use) and therefore, had to 1) validate the input; 2) loop if no valid input is provided.
+* The condition for timer === 0 did not work (it worked well for timer < 0).
+* To meet the demo gif design completely, I placed buttons within list items (\<li\>) but was not able to remove the styling for li:nth-child(odd).
 
-### Adding randomization
+For clarity, I placed all questions and their answers in the [Questions.js][questions-file] file, all logic in the [Logic.js][logic-file] file, and most code related to the scores in the [Scores.js][scores-file] file. There is some code related to scores still placed within the [Logic.js][logic-file] file - that is because the html elements that trigger this code are located in the [Index.html][index-file] file. If I were to move this code into the [Scores.js][scores-file] file to keep the code better organized, I would have to include a link to [Scores.js][scores-file] in the [Index.html][index-file] file but the task was **not to touch** the provided `html` and `css` files.
 
-I also did not like that all character sets, when joined together in a mega-array, still had a predictable structure. So I used the [code snippet 446][shuffle-array-url] from StackOverflow to create a function that would **randomize the mega-array** before the application picks additional characters from it to reach the specified password length.
+Finally (although this edge case was not specified in the requirements), the `css` styling alluded that we should be able to store multiple users in local storage and display a list of users and their scores on the [Highscores][scores-url] page Initially, I wrote the code for vanilla case (one user, always being overwritten in local storage by the latest player). But then I spent some time researching and re-writing the code to enable storing data for multiple players. I will expland more on this below.
 
-The next problem I encountered was that while the generated password had the specified length, and its second part was generated from a randomized array, the first part still followed a predictable structure. So, I created one more function using [code snippet 64][shuffle-string-url] to **re-shuffle the password string** 10 times to ensure that the password order could not be guessed.
 
-### Modular functions
+### Data structure for questions and answers
+I used this [video][quiz-video] to get an idea of how to structure the questions and answers data in the [Questions.js][questions-file] file.
 
-I broke each set of actions into a function, trying to balance modular approach and the DRY principle. Then I united 4 functions in a single function `createPassword()` and connected it to the html `button` element.
+### Timer code
 
-The modular approach allows for easier testing and debugging during development and also helps anyone else to see the logic flow.
+I copied the code for the timer function from solved files on [GitLab (module 6, lesson 1, activity 10) (lines 9-33)][gitlab-timer-url].
+
+### Timer condition
+
+As I mentioned, I was stuck on the problem of timer === 0 for quite a while. I discussed it with [Ben Rumbold][ben-rumbold-url], a colleague in the [bootcamp][bootcamp-url], and he advised me to move this condition into the timer function directly. This finally solved the issue.
+
+### Local storage
+
+I wanted to store and retrieve multiple items from local storage, as this use case is closer to the real world.
+
+This was quite a challenging issue. I researched online, but the best answer was provided to me by [ChatGPT][chatgpt-url]. Below are the instructions and the code I used in [Logic.js][logic-file] on lines 122, 125, 126:
+
+![instructions][chatgpt-instructions]
+![code][chatgpt-code]
+
+### Removing multiple children
+
+To be able to remove all user scores displayed on the [Highscores][scores-url] page, I used the code provided in snippet 2294, Option 2A provided on [StackOverflow][stackoverflow-url]. I used this code in [Scores.js][scores-file] on lines 19-21.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,7 +148,7 @@ The project is now live.
 ### Deployed application
 
 The deployed page looks like this:
-
+<!-- TODO: verify it works -->
 ![Deployed page][deployed-gif]
 
 
@@ -141,7 +156,7 @@ The deployed page looks like this:
 
 You can find the password generator app and its corresponding code here:
 
-- [ ] [Password Generator][deployed-url]
+- [ ] ["Life in the UK" quiz][deployed-url]
 - [ ] [Project repo][repo-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -152,12 +167,13 @@ You can find the password generator app and its corresponding code here:
 <details>
     <summary>Attribution</summary>
 
-- Quiz icon from [Flaticon][quiz-icon-url] created by Vitaly Gorbachev.
-
+- Quiz icon from [Flaticon][flaticon-url] created by [Vitaly Gorbachev][quiz-icon-url].
 
 <!-- MARKDOWN LINKS & IMAGES -->
+<!-- TODO: get video, make gif, change link -->
 [deployed-gif]: ./assets/password-generator-gif.gif
-[deployed-url]: https://icollier77.github.io/password-generator/
+
+[deployed-url]: https://icollier77.github.io/life-in-uk-code-quiz/index.html
 
 [repo-url]: https://github.com/icollier77/life-in-uk-code-quiz
 
@@ -170,9 +186,27 @@ You can find the password generator app and its corresponding code here:
 [css-url]: https://www.w3schools.com/css/default.asp
 [js-url]: https://www.w3schools.com/js/default.asp
 
-[quiz-icon-url]: https://www.flaticon.com/free-icons/quiz
+[quiz-icon-url]: https://www.flaticon.com/free-icon/quiz_4455825?term=quiz&page=1&position=83&origin=tag&related_id=4455825
+[flaticon-url]: https://www.flaticon.com/
 
 [bootcamp-url]: https://www.edx.org/boot-camps/coding/skills-bootcamp-in-front-end-web-development
-[password-video]: https://www.youtube.com/watch?v=Xrsb9SiF3a8
-[shuffle-array-url]: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 
-[shuffle-string-url]: https://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript
+
+[quiz-video]: https://www.youtube.com/watch?v=PBcqGxrr9g8
+
+[gitlab-timer-url]: https://git.bootcampcontent.com/uk-edx-16-week/UK-VIRT-FE-PT-11-2023-U-LOLC/-/blob/main/06-web-apis-module/01-intro-api-lesson/activities/10-Stu-Timers-Intervals/solved/assets/js/script.js?ref_type=heads
+
+[ben-rumbold-url]: https://github.com/Ben-Rumbold
+
+[chatgpt-instructions]: ./assets/ChatGPT-instructions.png
+
+[chatgpt-code]: ./assets/ChatGPT-code.png
+
+[logic-file]: ./starter/assets/js/logic.js
+[scores-file]: ./starter/assets/js/scores.js
+[questions-file]: ./starter/assets/js/questions.js
+[index-file]: ./index.html
+[highscores-file]: ./highscores.html
+[scores-url]: https://icollier77.github.io/life-in-uk-code-quiz/highscores.html
+[stackoverflow-url]: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+
+[chatgpt-url]: https://chat.openai.com/
