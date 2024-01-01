@@ -9,7 +9,7 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 <br />
 <div align="center">
 <!-- Webpage icon -->
-  <a href="https://icollier77.github.io/life-in-uk-code-quiz/" target="_blank">
+  <a href="https://icollier77.github.io/life-in-uk-quiz/" target="_blank">
     <img src="./assets/quiz.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -17,9 +17,9 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 
   <p align="center"> Those applying for British citizenship or settlement in the UK have to take "Life in the UK" test. This quiz helps applicants test their knowledge.</p>
     <!-- links to deployment -->
-    <a href="https://icollier77.github.io/life-in-uk-code-quiz/" target="_blank">"Life in the UK" quiz</a>
+    <a href="https://icollier77.github.io/life-in-uk-quiz/" target="_blank">"Life in the UK" quiz</a>
     ·
-    <a href="https://github.com/icollier77/life-in-uk-code-quiz" target="_blank">GitHub repo</a>
+    <a href="https://github.com/icollier77/life-in-uk-quiz" target="_blank">GitHub repo</a>
     ·
   <br>
   <br>
@@ -108,6 +108,7 @@ Once I figured out how to solve this challenge, the rest of the work was quite f
 
 * The condition for timer === 0 did not work (it worked well for timer < 0).
 * To meet the demo gif design completely, I placed buttons within list items (\<li\>) but was not able to remove the styling for li:nth-child(odd).
+  <!-- TODO: add how you solved it -->
 
 For clarity, I placed all questions and their answers in the [Questions.js][questions-file] file, all logic in the [Logic.js][logic-file] file, and most code related to the scores in the [Scores.js][scores-file] file. There is some code related to scores still placed within the [Logic.js][logic-file] file - that is because the html elements that trigger this code are located in the [Index.html][index-file] file. If I were to move this code into the [Scores.js][scores-file] file to keep the code better organized, I would have to include a link to [Scores.js][scores-file] in the [Index.html][index-file] file but the task was **not to touch** the provided `html` and `css` files.
 
@@ -173,9 +174,9 @@ You can find the password generator app and its corresponding code here:
 <!-- TODO: get video, make gif, change link -->
 [deployed-gif]: ./assets/password-generator-gif.gif
 
-[deployed-url]: https://icollier77.github.io/life-in-uk-code-quiz/index.html
+[deployed-url]: https://icollier77.github.io/life-in-uk-quiz/index.html
 
-[repo-url]: https://github.com/icollier77/life-in-uk-code-quiz
+[repo-url]: https://github.com/icollier77/life-in-uk-quiz
 
 [initial-img]: ./assets/08-web-apis-challenge-demo.gif
 
@@ -206,7 +207,7 @@ You can find the password generator app and its corresponding code here:
 [questions-file]: ./starter/assets/js/questions.js
 [index-file]: ./index.html
 [highscores-file]: ./highscores.html
-[scores-url]: https://icollier77.github.io/life-in-uk-code-quiz/highscores.html
+[scores-url]: https://icollier77.github.io/life-in-uk-quiz/highscores.html
 [stackoverflow-url]: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 
 [chatgpt-url]: https://chat.openai.com/
