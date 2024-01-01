@@ -16,5 +16,7 @@ playersArray.forEach(player => {
 // when user clicks on 'Clear Scores' button
 clearScores.addEventListener('click', function(){
     localStorage.clear();
-    highscoresList.removeChild(playerEl);
+    while(highscoresList.firstChild) {
+        highscoresList.removeChild(highscoresList.lastChild);
+    }
 });
