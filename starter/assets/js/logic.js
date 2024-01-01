@@ -15,14 +15,14 @@ let score = 0;
 let currentQuestionIndex = 0;
 let timeLeft = 75;
 
-// on Start button click, start the timer, hide start screen div, show questions div
+// -- on Start button click, start the timer, hide start screen div, show questions div --
 startBtn.addEventListener('click', function() {
     countdown();
     showQuestions();
     askQuestion();
 })
 
-// timer function
+// ------- timer function ------------
 function countdown() {
     const timeInterval = setInterval(function() {
         if (timeLeft >= 0) {
@@ -31,17 +31,20 @@ function countdown() {
         } else {
             timeEl.textContent = 0;
             clearInterval(timeInterval);
+            // when time runs out
+            showEndScreen();
+            addPlayer();
         };
     }, 1000);
 }
 
-// hide start div, show questions div
+// ----- hide start div, show questions div -------
 function showQuestions() {
     startScreenDiv.classList.add("hide");
     questionsDiv.classList.toggle("hide");
 }
 
-// ask quiz questions, show answer options
+// ---- ask quiz questions, show answer options ----
 function askQuestion() {
     // display question
     questionTitleEl.textContent = questions[currentQuestionIndex].question;
@@ -94,21 +97,21 @@ function askQuestion() {
             askQuestion();                
         });
     });
-    // when time runs out OR no more questions
-    if (timeLeft <= 0 || currentQuestionIndex === questions.length - 1) {
+    // when no more questions
+    if (currentQuestionIndex === questions.length - 1) {
         showEndScreen();
         addPlayer();
     };
 };
 
-// switch from questions div to the end screen div
+// ----- switch from questions div to the end screen div --------
 function showEndScreen() {
     questionsDiv.classList.toggle("hide");
     endScreenDiv.classList.toggle("hide");
     finalScoreEl.textContent = score;
 }
 
-// extract array of players from local storage (or create array), add new player and score
+// -- extract array of players from local storage (or create array), add new player and score --
 function addPlayer() {
     submitBtn.addEventListener('click', function(e){
         let playerList = JSON.parse(localStorage.getItem('userList')) || [];
