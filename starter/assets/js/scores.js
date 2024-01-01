@@ -12,7 +12,7 @@ highscoreEl.innerHTML = `${userInitials} - ${userScore}.`
 highscoresList.appendChild(highscoreEl);
 
 
-// set the 'Clear Scores' button to clear the scores
+// when user clicks on 'Clear Scores' button
 clearScores.addEventListener('click', function(){
     localStorage.clear();
     highscoresList.removeChild(highscoreEl);

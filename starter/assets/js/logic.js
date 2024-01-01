@@ -61,10 +61,10 @@ function askQuestion() {
         let correctAnswer = answer.correct; // extract info about correctness of the answer
         optionEl.appendChild(answerText); // add text to the html element
         answersList.appendChild(optionEl); // add answer option to the list of answers
-        // add event handler for click on answer
+        // when user clicks on answer option
         optionEl.addEventListener('click', (event) => {
             event.stopPropagation(); // prevent event bubbling
-            // remove previous list of answers for previous questions
+            // remove list of answers for previous questions
             choicesDiv.removeChild(answersList);
             // show feedback for 1 sec
             if(correctAnswer) {
@@ -78,8 +78,8 @@ function askQuestion() {
             setTimeout(function() {
                 feedbackEl.classList.toggle("hide");
             }, 1000);
-            currentQuestionIndex++; // prepare to move to the next question
             // ask the next question
+            currentQuestionIndex++;
             askQuestion();                
         });
     });
@@ -88,7 +88,7 @@ function askQuestion() {
         questionsDiv.classList.toggle("hide");
         endScreenDiv.classList.toggle("hide");
         finalScoreEl.textContent = score;
-        // add event handler on the Submit button
+        // when user clicks on Submit button
         submitBtn.addEventListener('click', function(e){
             e.stopPropagation();
             const playerInitials = initialsEl.value;
