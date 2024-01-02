@@ -3,7 +3,7 @@ const questions = [
     {
         question: "When is St. David's day?",
         answers: [
-            {text: "1st of March", correct: "correct answer"},
+            {text: "1st of March", correct: true},
             {text: "17th of March", correct: false},
             {text: "23rd of April", correct: false},
             {text: "30th of November", correct: false}
