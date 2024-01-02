@@ -1,14 +1,19 @@
 const highscoresList = document.querySelector("#highscores");
 const clearScores = document.querySelector("#clear");
 
-// extract values from local storage and display in a list
+// extract values from local storage into an array
 const playersArray = JSON.parse(localStorage.getItem("userList"));
+
+// sort the array in descending order to create leaderboard
+const sortedArray = playersArray.sort((a,b) => b.scoreValue - a.scoreValue);
+
+// display player records on the page
 let currentPlayerIndex = 0;
-playersArray.forEach(player => {
+sortedArray.forEach(player => {
     const userInitials = playersArray[currentPlayerIndex].initials;
     const userScore = playersArray[currentPlayerIndex].scoreValue;
     const playerEl = document.createElement('li');
-    playerEl.innerHTML = `${userInitials} - ${userScore}.`
+    playerEl.innerHTML = `${userInitials} - ${userScore}`
     highscoresList.appendChild(playerEl);
     currentPlayerIndex++;
 });
