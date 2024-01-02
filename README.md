@@ -49,6 +49,7 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
         <li><a href="#removing-multiple-children">Removing multiple children</a></li>
         <li><a href="#logic-checks-for-initials">Logic checks for initials</a></li>
         <li><a href="#sort-array-of-objects">Sort array of objects</a></li>
+        <li><a href="#final-challenge">Final challenge</a></li>
       </ul>
     <li><a href="#deployed-project">Deployed Project</a></li>
       <ul>
@@ -155,6 +156,12 @@ I wanted to remove all white spaces from the user's input (initials), and to pre
 ### Sort array of objects
 
 Finally, I wanted to sort the array of players' results based on the scores, in descending order. The code snippet 2193 in this [discussion][sort-array-url] was very helpful and I used it in [Scores.js][scores-file], line 8.
+
+### Final challenge
+
+My code includes an event listener on a button within a `forEach` method in the [Logic.js][logic-file] file, lines 72-91. All my attempts (and also the tutor's attempts) to take it out resulted in the code being broken.
+
+I know that having an event listener inside another function is not the best solution, and in fact, would cause issues in a larger program. This is something for me to keep learning and refining so that I avoid such issues in the future.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
