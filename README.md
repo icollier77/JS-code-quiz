@@ -62,13 +62,13 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 ## About The Project
 
 ### Project Goal
-The goal of this project is practice Web APIs: DOM manipulation and using local storage.
+The goal of this project is to practice Web APIs: DOM manipulation and using local storage.
 
 ### Project Specifications
 
-<p>The task for this challenges outlined the following requirements.</p>
+<p>The tasks for this challenge are outlined in the following requirements.</p>
 
-<p><b>The features of the quiz app:</b></p>
+<p><b>The quiz app must have these features:</b></p>
 <ol>
   <li>A start button that when clicked a timer starts and the first question appears.</li>
   <li>Questions contain buttons for each answer.</li>
@@ -77,6 +77,8 @@ The goal of this project is practice Web APIs: DOM manipulation and using local 
   <li>The quiz should end when all questions are answered or the timer reaches 0.</li>
   <li>When the game ends, it should display their score and give the user the ability to save their initials and their score.</li>
 </ol>
+
+<p>Not mandatatory, but we were also provided with the audio files with sounds to be played when the user answers correctly or incorrectly.</p>
 
 ### Sample App
 
@@ -87,11 +89,11 @@ The goal of this project is practice Web APIs: DOM manipulation and using local 
 
 ### Built With
 
-<p>We were provided with files already built in:</p>
+<p>We were provided with 3 files already built in:</p>
 
 [![HTML][html-badge]][html-url] [![CSS][css-badge]][css-url]
 
-<p>I wrote the code in:</p>
+<p>I wrote the code in 3 files:</p>
 
 [![JavaScript][js-badge]][js-url]
 
