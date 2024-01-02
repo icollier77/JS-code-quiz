@@ -11,6 +11,11 @@ const initialsInput = document.querySelector('#initials');
 const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
+// const variables for the sounds
+const correctSound = new Audio('/starter/assets/sfx/correct.wav');
+const incorrectSound = new Audio('/starter/assets/sfx/incorrect.wav');
+
+// variables to be used in functions
 let score = 0;
 let currentQuestionIndex = 0;
 let timeLeft = 75;
@@ -59,6 +64,7 @@ function askQuestion() {
     // create lis with answer options, add to the list
     answers.forEach(answer => {
         const optionLi = document.createElement('li'); // create html element in DOM for answer option
+        // TODO: remove background color on the Lis
         // optionLi.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!
         // const allLis = document.querySelectorAll('li:nth-child(odd)');
         // allLis.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!!
@@ -71,7 +77,8 @@ function askQuestion() {
         optionBtn.classList.add("choices"); // add styling
         optionBtn.appendChild(optionLi);
         answersList.appendChild(optionBtn); // add answer option to the list of answers
-
+        
+        // TODO: delete if not needed
         // ---------- previous version ------------
         // const optionEl = document.createElement('button'); // create html element in DOM for answer option
         // optionEl.classList.add("choices"); // add styling
@@ -82,14 +89,17 @@ function askQuestion() {
         
         // when user clicks on answer option
         optionBtn.addEventListener('click', (event) => {
-            // remove list of answers for previous questions
-            choicesDiv.removeChild(answersList);
+            choicesDiv.removeChild(answersList); // remove list of answers for previous question
             // add text to feedback, change score or timeLeft
             if(correctAnswer) {
                 feedbackEl.textContent = "Correct!";
+                // TODO: figure out sounds
+                correctSound.play();
                 score += 5;
             } else {
                 feedbackEl.textContent = "Incorrect!";
+                // TODO: figure out sounds
+                incorrectSound.play();
                 timeLeft -= 5;
             }
             // show feedback for 1 sec
@@ -120,10 +130,18 @@ function showEndScreen() {
 function addPlayer() {
     submitBtn.addEventListener('click', function(){
         let playerList = JSON.parse(localStorage.getItem('userList')) || [];
-        const playerInitials = initialsInput.value;
-        const newPlayer = {initials: playerInitials, scoreValue: score};
-        playerList.push(newPlayer);
-        localStorage.setItem('userList', JSON.stringify(playerList));
-        window.location.href = "highscores.html";
+        const playerInitials = initialsInput.value.replace(/\s/g, '').toUpperCase(); // remove all spaces from input
+        if (playerInitials.length === 0) {
+            alert("Please enter your initials!");
+        } else if (playerInitials.length > 2 || typeof playerInitials !== "string") {
+            alert("Only 2 letters are allowed!");
+        } else if (playerInitials.match(/\d+/g) || (playerInitials.match(/\p{P}+/g)) || (playerInitials.match(/[^\w\s]+/g))) {
+            alert("Only letters, please!");
+        } else {    
+            const newPlayer = {initials: playerInitials, scoreValue: score};
+            playerList.push(newPlayer);
+            localStorage.setItem('userList', JSON.stringify(playerList));
+            window.location.href = "highscores.html";
+        };
     });
-}
+};
