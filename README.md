@@ -42,10 +42,13 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
     </li>
     <li><a href="#development">Development</a></li>
       <ul>
-        <li><a href="timer-code">Timer code</a></li>
-        <li><a href="timer-condition">Timer condition</a></li>
-        <li><a href="local-storage">Local storage</a></li>
-        <li><a href="removing-multiple-children">Removing multiple children</a></li>
+        <li><a href="#numbered-answer-options">Numbered answer options</a></li>
+        <li><a href="#timer-code">Timer code</a></li>
+        <li><a href="#timer-condition">Timer condition</a></li>
+        <li><a href="#local-storage">Local storage</a></li>
+        <li><a href="#removing-multiple-children">Removing multiple children</a></li>
+        <li><a href="#logic-checks-for-initials">Logic checks for initials</a></li>
+        <li><a href="#sort-array-of-objects">Sort array of objects</a></li>
       </ul>
     <li><a href="#deployed-project">Deployed Project</a></li>
       <ul>
@@ -54,8 +57,6 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
       </ul>
   </ol>
 </details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -84,7 +85,6 @@ The goal of this project is practice Web APIs: DOM manipulation and using local 
 ![inital screenshot][initial-img]
 </p>
 
-
 ### Built With
 
 <p>We were provided with files already built in:</p>
@@ -107,16 +107,19 @@ When I started working on the assignment, I tried to use various loops to cycle 
 Once I figured out how to solve this challenge, the rest of the work was quite fast. However, I did get stuck on 2 items:
 
 * The condition for timer === 0 did not work (it worked well for timer < 0).
-* To meet the demo gif design completely, I placed buttons within list items (\<li\>) but was not able to remove the styling for li:nth-child(odd).
-  <!-- TODO: add how you solved it -->
+* To meet the demo gif design completely, I placed buttons within list items (`li`) but was not able to remove the styling for li:nth-child(odd).
 
-For clarity, I placed all questions and their answers in the [Questions.js][questions-file] file, all logic in the [Logic.js][logic-file] file, and most code related to the scores in the [Scores.js][scores-file] file. There is some code related to scores still placed within the [Logic.js][logic-file] file - that is because the html elements that trigger this code are located in the [Index.html][index-file] file. If I were to move this code into the [Scores.js][scores-file] file to keep the code better organized, I would have to include a link to [Scores.js][scores-file] in the [Index.html][index-file] file but the task was **not to touch** the provided `html` and `css` files.
+For clarity, I placed all questions and their answers in the [Questions.js][questions-file] file, all logic in the [Logic.js][logic-file] file, and most code related to the scores in the [Scores.js][scores-file] file. There is some code related to scores still placed within the [Logic.js][logic-file] file - that is because the `html` elements that trigger this code are located in the [Index.html][index-file] file. If I were to move this code into the [Scores.js][scores-file] file to keep the code better organized, I would have to include a link to [Scores.js][scores-file] in the [Index.html][index-file] file but the task was **not to touch** the provided `html` and `css` files.
 
 Finally (although this edge case was not specified in the requirements), the `css` styling alluded that we should be able to store multiple users in local storage and display a list of users and their scores on the [Highscores][scores-url] page Initially, I wrote the code for vanilla case (one user, always being overwritten in local storage by the latest player). But then I spent some time researching and re-writing the code to enable storing data for multiple players. I will expland more on this below.
 
 
 ### Data structure for questions and answers
 I used this [video][quiz-video] to get an idea of how to structure the questions and answers data in the [Questions.js][questions-file] file.
+
+### Numbered answer options
+
+As I mentioned, this was one of the issues I was stuck on for a long time. I scheduled a session with a tutor - [Sara Neves Pereira][sara-github-url] and she helped me understand the issue and re-write the code. She advised not to use list items `li` but rather insert the number into the button text as `i + 1`.
 
 ### Timer code
 
@@ -132,12 +135,24 @@ I wanted to store and retrieve multiple items from local storage, as this use ca
 
 This was quite a challenging issue. I researched online, but the best answer was provided to me by [ChatGPT][chatgpt-url]. Below are the instructions and the code I used in [Logic.js][logic-file] on lines 122, 125, 126:
 
-![instructions][chatgpt-instructions]
-![code][chatgpt-code]
+<img src="./assets/ChatGPT-instructions.png" alt="chatgpt-instructions" width="400" height="auto">
+<img src="./assets/ChatGPT-code.png" alt="chatgpt-code" width="400" height="auto">
 
 ### Removing multiple children
 
 To be able to remove all user scores displayed on the [Highscores][scores-url] page, I used the code provided in snippet 2294, Option 2A provided on [StackOverflow][stackoverflow-url]. I used this code in [Scores.js][scores-file] on lines 19-21.
+
+### Logic checks for initials
+
+I wanted to remove all white spaces from the user's input (initials), and to prevent the user from using numbers or punctuation symbols. The following resources were helpful to understand how to remove all white spaces and also the use of regular expressions (**regex**) which I used in the [Logic.js][logic-file] file, lines 111 and 116:
+
+* [How to Remove All Whitespace from a String in JavaScript][whitespace-url]
+* [Check whether an input string contains a number in javascript][number-stack-url]
+* [What is Punct in RegEx? How to Match All Punctuation Marks in Regular Expressions][punct-regex-url]
+
+### Sort array of objects
+
+Finally, I wanted to sort the array of players' results based on the scores, in descending order. The code snippet 2193 in this [discussion][sort-array-url] was very helpful and I used it in [Scores.js][scores-file], line 8.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,20 +164,17 @@ The project is now live.
 ### Deployed application
 
 The deployed page looks like this:
-<!-- TODO: verify it works -->
-![Deployed page][deployed-gif]
 
+![Deployed page][deployed-gif]
 
 ### Links to deployed project
 
-You can find the password generator app and its corresponding code here:
+You can find the "Life in the UK" quiz and its corresponding code here:
 
 - [ ] ["Life in the UK" quiz][deployed-url]
 - [ ] [Project repo][repo-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 #### Credit:
 <details>
@@ -171,8 +183,7 @@ You can find the password generator app and its corresponding code here:
 - Quiz icon from [Flaticon][flaticon-url] created by [Vitaly Gorbachev][quiz-icon-url].
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- TODO: get video, make gif, change link -->
-[deployed-gif]: ./assets/password-generator-gif.gif
+[deployed-gif]: ./assets/deployed-quiz.gif
 
 [deployed-url]: https://icollier77.github.io/life-in-uk-quiz/index.html
 
@@ -211,3 +222,13 @@ You can find the password generator app and its corresponding code here:
 [stackoverflow-url]: https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 
 [chatgpt-url]: https://chat.openai.com/
+
+[sara-github-url]: https://github.com/SaraNP-33
+
+[punct-regex-url]: https://www.freecodecamp.org/news/what-is-punct-in-regex-how-to-match-all-punctuation-marks-in-regular-expressions/
+
+[whitespace-url]: https://javascript.plainenglish.io/javascript-remove-all-whitespace-from-string-ece685d0ec33#:~:text=To%20remove%20all%20whitespace%20from%20a%20string%20in%20JavaScript%2C%20call,all%20whitespace%20removed%20from%20str%20
+
+[number-stack-url]: https://stackoverflow.com/questions/5778020/check-whether-an-input-string-contains-a-number-in-javascript
+
+[sort-array-url]: https://stackoverflow.com/questions/979256/sorting-an-array-of-objects-by-property-values
