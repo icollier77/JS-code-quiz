@@ -12,8 +12,8 @@ const submitBtn = document.querySelector('#submit');
 const feedbackEl = document.querySelector('#feedback');
 
 // const variables for the sounds
-const correctSound = new Audio('/starter/assets/sfx/correct.wav');
-const incorrectSound = new Audio('/starter/assets/sfx/incorrect.wav');
+const correctSound = new Audio('./starter/sfx/correct.wav');
+const incorrectSound = new Audio('./starter/sfx/incorrect.wav');
 
 // variables to be used in functions
 let score = 0;
@@ -60,45 +60,23 @@ function askQuestion() {
 
     // create answers array
     const answers = questions[currentQuestionIndex].answers;
-
-    // create lis with answer options, add to the list
-    answers.forEach(answer => {
-        const optionLi = document.createElement('li'); // create html element in DOM for answer option
-        // TODO: remove background color on the Lis
-        // optionLi.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!
-        // const allLis = document.querySelectorAll('li:nth-child(odd)');
-        // allLis.style.removeProperty('backgroundColor'); // <- NOT WORKING!!!!
-
-        let answerText = document.createTextNode(answer.text); // add a node with answer's text
+    choicesDiv.innerHTML= ""
+    answers.forEach((answer, i) => {
+        const optionBtn = document.createElement('button');  
+        optionBtn.textContent = `${i + 1}. ${answer.text}`;
+        optionBtn.setAttribute("class", "choices"); // apply styling
+        choicesDiv.append(optionBtn);
         let correctAnswer = answer.correct; // extract info about correctness of the answer
-        optionLi.appendChild(answerText); // add text to the html element
-        const optionBtn = document.createElement('button');       
-
-        optionBtn.classList.add("choices"); // add styling
-        optionBtn.appendChild(optionLi);
-        answersList.appendChild(optionBtn); // add answer option to the list of answers
-        
-        // TODO: delete if not needed
-        // ---------- previous version ------------
-        // const optionEl = document.createElement('button'); // create html element in DOM for answer option
-        // optionEl.classList.add("choices"); // add styling
-        // let answerText = document.createTextNode(answer.text); // add a node with answer's text
-        // let correctAnswer = answer.correct; // extract info about correctness of the answer
-        // optionEl.appendChild(answerText); // add text to the html element
-        // answersList.appendChild(optionEl); // add answer option to the list of answers
-        
         // when user clicks on answer option
+        // add text to feedback, play sound, change score or timeLeft
         optionBtn.addEventListener('click', (event) => {
-            choicesDiv.removeChild(answersList); // remove list of answers for previous question
-            // add text to feedback, change score or timeLeft
+            event.preventDefault();
             if(correctAnswer) {
                 feedbackEl.textContent = "Correct!";
-                // TODO: figure out sounds
                 correctSound.play();
                 score += 5;
             } else {
                 feedbackEl.textContent = "Incorrect!";
-                // TODO: figure out sounds
                 incorrectSound.play();
                 timeLeft -= 5;
             }
