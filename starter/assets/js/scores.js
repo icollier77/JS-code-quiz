@@ -5,7 +5,7 @@ const clearScores = document.querySelector("#clear");
 const playersArray = JSON.parse(localStorage.getItem("userList"));
 
 // sort the array in descending order to create leaderboard
-const sortedArray = playersArray.sort((a,b) => b.scoreValue - a.scoreValue);
+const sortedArray = playersArray.sort((a,b) => parseFloat(b.scoreValue) - parseFloat(a.scoreValue));
 
 // display player records on the page
 let currentPlayerIndex = 0;
