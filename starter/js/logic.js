@@ -65,30 +65,8 @@ function askQuestion() {
         const optionBtn = document.createElement('button');  
         optionBtn.textContent = `${i + 1}. ${answer.text}`;
         optionBtn.setAttribute("class", "choices"); // apply styling
+        optionBtn.setAttribute("data-correct", answer.correct); // extract info about correctness of the answer
         choicesDiv.append(optionBtn);
-        let correctAnswer = answer.correct; // extract info about correctness of the answer
-        // when user clicks on answer option
-        // add text to feedback, play sound, change score or timeLeft
-        optionBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            if(correctAnswer) {
-                feedbackEl.textContent = "Correct!";
-                correctSound.play();
-                score += 5;
-            } else {
-                feedbackEl.textContent = "Incorrect!";
-                incorrectSound.play();
-                timeLeft -= 5;
-            }
-            // show feedback for 1 sec
-            feedbackEl.classList.toggle("hide");
-            setTimeout(function() {
-                feedbackEl.classList.toggle("hide");
-            }, 1000);
-            // ask the next question
-            currentQuestionIndex++;
-            askQuestion();                
-        });
     });
     // when no more questions
     if (currentQuestionIndex === questions.length - 1) {
@@ -96,6 +74,33 @@ function askQuestion() {
         addPlayer();
     };
 };
+
+// ------------ Event delegation ------------
+// when user clicks on answer option
+// add text to feedback, play sound, change score or timeLeft
+choicesDiv.addEventListener('click', function (event) {
+    event.preventDefault();
+    if (event.target && event.target.matches('button.choices')) {
+        const chosenAnswer = event.target;
+        if (chosenAnswer.dataset.correct === 'true') {
+            feedbackEl.textContent = "Correct!";
+            correctSound.play();
+            score += 5;
+        } else {
+            feedbackEl.textContent = "Incorrect!";
+            incorrectSound.play();
+            timeLeft -= 5;
+        }
+        // show feedback for 1 sec
+        feedbackEl.classList.toggle("hide");
+        setTimeout(function() {
+            feedbackEl.classList.toggle("hide");
+        }, 1000);
+        // ask the next question
+        currentQuestionIndex++;
+        askQuestion();  
+    }
+})
 
 // ----- switch from questions div to the end screen div --------
 function showEndScreen() {
