@@ -163,6 +163,10 @@ My code includes an event listener on a button within a `forEach` method in the 
 
 I know that having an event listener inside another function is not the best solution, and in fact, would cause issues in a larger program. This is something for me to keep learning and refining so that I avoid such issues in the future.
 
+**UPDATE on final challenge**
+
+I have read [an article on event delegation][event-delegation-url] which has greatly helped me understand both the problem and the solution. Based on this, I was able to take out the event listener and place it separately. This has resolved this issue.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Deployed project -->
@@ -241,3 +245,5 @@ You can find the "Life in the UK" quiz and its corresponding code here:
 [number-stack-url]: https://stackoverflow.com/questions/5778020/check-whether-an-input-string-contains-a-number-in-javascript
 
 [sort-array-url]: https://stackoverflow.com/questions/979256/sorting-an-array-of-objects-by-property-values
+
+[event-delegation-url]: https://bootcamp.uxdesign.cc/mastering-event-delegation-in-javascript-simplify-your-code-and-boost-performance-785a866c351d
