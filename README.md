@@ -63,7 +63,7 @@ Assignment 6 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a timed
 ## About The Project
 
 ### Project Goal
-The goal of this project is to practice Web APIs: DOM manipulation and using local storage.
+The goal of this project is to practice DOM manipulation and using local storage.
 
 ### Project Specifications
 
@@ -161,7 +161,7 @@ Finally, I wanted to sort the array of players' results based on the scores, in 
 
 My code includes an event listener on a button within a `forEach` method in the [Logic.js][logic-file] file, lines 72-91. All my attempts (and also the tutor's attempts) to take it out resulted in the code being broken.
 
-I know that having an event listener inside another function is not the best solution, and in fact, would cause issues in a larger program. This is something for me to keep learning and refining so that I avoid such issues in the future.
+I know that having an event listener inside a loop is not the best solution, and in fact, would cause issues in a larger program. This is something for me to keep learning and refining so that I avoid such issues in the future.
 
 **UPDATE on final challenge**
 
