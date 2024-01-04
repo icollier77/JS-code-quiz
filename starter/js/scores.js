@@ -10,8 +10,8 @@ const sortedArray = playersArray.sort((a,b) => parseFloat(b.scoreValue) - parseF
 // display player records on the page
 let currentPlayerIndex = 0;
 sortedArray.forEach(player => {
-    const userInitials = playersArray[currentPlayerIndex].initials;
-    const userScore = playersArray[currentPlayerIndex].scoreValue;
+    const userInitials = sortedArray[currentPlayerIndex].initials;
+    const userScore = sortedArray[currentPlayerIndex].scoreValue;
     const playerEl = document.createElement('li');
     playerEl.innerHTML = `${userInitials} - ${userScore}`
     highscoresList.appendChild(playerEl);
